@@ -3,8 +3,9 @@ import express from 'express'
 import errorHandler from './libs/middleware/errorHandler'
 import callableHandler from './libs/middleware/callableHandler'
 
-const server = express()
-server.all('/index/:app-:module-:action',
+const app = express()
+app.set("view engine", "ejs");
+app.all('/index/:app-:module-:action',
     callableHandler,
     async (req, res) => {
         const { app, module, action } = req.params
@@ -12,11 +13,13 @@ server.all('/index/:app-:module-:action',
 
         const serverAction = (await import(modulePath))[action]
         serverAction()
+        // res.render('<?=text?>', {text: 'hello world'})
+        res.end('end world')
     })
-server.use(errorHandler) // エラーハンドラは最後に追加する
+app.use(errorHandler) // エラーハンドラは最後に追加する
 
 const port = 8080
 
-server.listen(port)
+app.listen(port)
 
 log(`listening the port: ${port}`)

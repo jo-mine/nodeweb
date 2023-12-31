@@ -14,6 +14,7 @@ const callableHandler:Handler = async (req, res, next) => {
         if (!Object.hasOwn(actionModule, action)) {
             throw new Error('not found')
         }
+        // FIXME: パラメータが足りているか
     } catch (error) {
         throw new Error('not found')
     }
