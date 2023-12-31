@@ -10,5 +10,6 @@ services:
       - ../:/app
     ports:
       - 8080:8080
-    command: >
-      bash -c "npm i && npm run build && npm run dev"
+    tty: true
+    # command: >
+    #   bash -c "npm i && npm run build && npm run dev"
