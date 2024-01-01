@@ -1,11 +1,15 @@
 import { log } from 'console'
-import express from 'express'
+import "reflect-metadata"
 import errorHandler from './libs/middleware/errorHandler'
 import callableHandler from './libs/middleware/callableHandler'
+import { Container } from 'inversify'
+import { InversifyExpressServer } from 'inversify-express-utils'
 
-const app = express()
-app.set("view engine", "ejs");
-app.all('/index/:app-:module-:action',
+const container = new Container()
+const server = new InversifyExpressServer(container)
+const app = server.build()
+    .set("view engine", "ejs")
+    .all('/index/:app-:module-:action',
     callableHandler,
     async (req, res) => {
         const { app, module, action } = req.params
@@ -16,7 +20,7 @@ app.all('/index/:app-:module-:action',
         // res.render('<?=text?>', {text: 'hello world'})
         res.end('end world')
     })
-app.use(errorHandler) // エラーハンドラは最後に追加する
+    .use(errorHandler) // エラーハンドラは最後に追加する
 
 const port = 8080
 

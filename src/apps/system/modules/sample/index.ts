@@ -1,7 +1,6 @@
-const index = () => {
-    
-}
+import { controller, interfaces } from "inversify-express-utils";
 
-export default {
-    index
+@controller("/system/sample")
+export class controller implements interfaces.Controller {
+    
 }
