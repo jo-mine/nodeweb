@@ -1,0 +1,13 @@
+version: '3'
+services:
+  nodeweb:
+    build:
+      context: ./docker/nodeweb
+      dockerfile: ./Dockerfile
+    image: nodewebimage
+    container_name: nodewebcontainer
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:8080
+    command: "run dev"

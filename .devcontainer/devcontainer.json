@@ -19,7 +19,8 @@
 				"dbaeumer.vscode-eslint",
 				"antfu.browse-lite",
 				"mhutchie.git-graph"
-			]
+			],
+			"settings": {}
 		}
 	}
 	// Features to add to the dev container. More info: https://containers.dev/features.

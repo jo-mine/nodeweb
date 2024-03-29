@@ -6,3 +6,5 @@ RUN apt upgrade
 RUN apt install -y git
 
 WORKDIR /app
+
+ENTRYPOINT ["npm"]
