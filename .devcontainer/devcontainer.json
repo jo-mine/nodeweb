@@ -16,7 +16,6 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"dbaeumer.vscode-eslint",
 				"antfu.browse-lite",
 				"mhutchie.git-graph"
 			],
