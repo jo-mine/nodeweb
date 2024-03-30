@@ -5,7 +5,7 @@ import type * as express from "express"
 import { inject } from "inversify"
 import { controller, httpDelete, httpGet, httpPost, request, requestParam, response } from "inversify-express-utils"
 
-@controller("/sample")
+@controller("/operation/sample")
 export class Sample extends BaseController {
     constructor(@inject(Logger.symbol) private readonly logger: Logger) {
         super()
