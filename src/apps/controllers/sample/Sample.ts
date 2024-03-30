@@ -44,7 +44,7 @@ export class Sample extends BaseController {
             //   await this.fooService.create(req.body)
             res.sendStatus(201)
         } catch (err) {
-            res.status(400).json({ error: err.message })
+            res.status(400).json({ error: (err as Error).message })
         }
     }
 
