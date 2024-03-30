@@ -11,6 +11,7 @@ import "./controllers"
 import errorHandler from "./libs/middleware/errorHandler"
 import { isProduction } from "./libs/utils/env"
 import { bindService } from "./services"
+import { static as expressstatic } from "express"
 
 // 本番は80、開発は81番にする
 const port = isProduction ? 80 : 81
@@ -29,6 +30,9 @@ new InversifyExpressServer(container)
         app.set("views", join(__dirname, "frontend/views"))
         app.set("view cache", isProduction)
         cache(isProduction)
+
+        // 仮実装。フロントエンドのjs配置考える
+        app.use("/resources", expressstatic(join(__dirname, isProduction ? "frontend/assets" : "frontend/src")))
         return app
     })
     .setErrorConfig((app) => {

@@ -4,11 +4,13 @@
     "description": "",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "npm run clean && tsc && tsc-alias && npm run copytemplates",
-        "dev": "tsx watch ./src/server.ts",
-        "check": "biome check --apply src/",
         "clean": "rm -rf dist/*",
-        "copytemplates": "cd src && find ./ -name *.twig | xargs -I{} cp --parents {} ../dist/"
+        "build:backend": "tsc && tsc-alias",
+        "build:frontend": "cd src/frontend && npm run build",
+        "copyview": "cd src && find ./ -name *.twig | xargs -I{} cp --parents {} ../dist/",
+        "build": "npm run clean && npm run build:backend && npm run build:frontend && npm run copyview",
+        "dev": "tsx watch ./src/server.ts",
+        "check": "biome check --apply src/"
     },
     "author": "",
     "license": "ISC",

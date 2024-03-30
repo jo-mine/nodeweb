@@ -1,8 +1,11 @@
 <html>
     <head>
         <script type="text/javascript">console.log('loaded')</script>
+        {% block head %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div id="app">
+            {% block body %}{% endblock %}
+        </div>
     </body>
 </html>
