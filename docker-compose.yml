@@ -8,5 +8,8 @@ services:
     volumes:
       - ./:/app
     ports:
-      - 8080:8080
+      # production
+      - 8080:80
+      # develop
+      - 8081:81
     command: "run dev"

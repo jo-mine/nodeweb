@@ -68,3 +68,6 @@ typings/
 .yarn-integrity
 .env
 .next
+
+# 追加
+dist
