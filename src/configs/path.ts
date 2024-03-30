@@ -1,2 +1,2 @@
-import { join } from 'path'
-export const LOG_FOLDER = join(__dirname, '../logs')
+import { join } from "node:path"
+export const LOG_FOLDER = join(__dirname, "../logs")

@@ -1,13 +1,13 @@
-import { type ErrorRequestHandler } from 'express'
-import { container } from '../../server'
-import { Logger } from '../service/Logger'
+import type { ErrorRequestHandler } from "express"
+import { container } from "../../server"
+import { Logger } from "../service/Logger"
 
-const errorHandler: ErrorRequestHandler = (err: unknown, req, res, next) => {
+const errorHandler: ErrorRequestHandler = (err: Error | null, req, res, next) => {
     const logger = container.get<Logger>(Logger.symbol)
-    if (err instanceof Error && err.stack !== undefined) {
-        logger.error(err.stack)
+    if (err !== null) {
+        logger.error(err.stack ?? err.message)
     }
-    res.status(500).send('Something broke!')
+    res.status(500).send("Something broke!")
     next()
 }
 
