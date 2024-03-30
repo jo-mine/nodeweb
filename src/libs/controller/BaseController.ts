@@ -1,5 +1,5 @@
-import { container } from "@/server"
 import { join } from "node:path"
+import { container } from "@/server"
 import type { Request, Response } from "express"
 import { BaseHttpController } from "inversify-express-utils"
 import { Logger } from "../service/Logger"

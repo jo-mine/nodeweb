@@ -3,7 +3,7 @@
         "./src"
     ],
     "exclude": [
-        "src/apps/frontend"
+        "src/frontend"
     ],
     "compilerOptions": {
         /* Visit https://aka.ms/tsconfig to read more about this file */

@@ -1,3 +1,3 @@
 // inversifyでDIするコントローラーは一度importする必要がある
 import "@/libs/controller/NotFoundController"
-import "./apps/backend/sample/Sample"
+import "./backend/sample/Sample"

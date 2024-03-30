@@ -1,9 +1,9 @@
+import { Logger } from "@//libs/service/Logger"
+import { BaseController } from "@/libs/controller/BaseController"
 import dayjs from "dayjs"
 import type * as express from "express"
 import { inject } from "inversify"
 import { controller, httpDelete, httpGet, httpPost, request, requestParam, response } from "inversify-express-utils"
-import { BaseController } from "@/libs/controller/BaseController"
-import { Logger } from "@//libs/service/Logger"
 
 @controller("/sample")
 export class Sample extends BaseController {
