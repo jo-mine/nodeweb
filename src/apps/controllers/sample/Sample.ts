@@ -2,8 +2,8 @@ import dayjs from "dayjs"
 import type * as express from "express"
 import { inject } from "inversify"
 import { controller, httpDelete, httpGet, httpPost, request, requestParam, response } from "inversify-express-utils"
-import { BaseController } from "../../libs/controller/BaseController"
-import { Logger } from "../../libs/service/Logger"
+import { BaseController } from "../../../libs/controller/BaseController"
+import { Logger } from "../../../libs/service/Logger"
 
 @controller("/sample")
 export class Sample extends BaseController {
@@ -14,7 +14,7 @@ export class Sample extends BaseController {
     @httpGet("/")
     private async index(@request() req: express.Request, @response() res: express.Response): Promise<string> {
         res.setHeader("Content-Type", "text/html")
-        return await this.render(res, "index.html.twig", {
+        return await this.renderLocal(req, res, "index.html.twig", {
             value: dayjs().format("YYYY-MM-DD hh:mm:ss"),
         })
     }

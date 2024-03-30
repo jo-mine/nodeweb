@@ -23,7 +23,7 @@ new InversifyExpressServer(container)
         app.use(bodyParser.json())
         app.engine("twig", renderFile)
         app.set("view engine", "twig")
-        app.set("views", join(__dirname, "views"))
+        app.set("views", join(__dirname, "apps"))
         app.set("view cache", false)
         cache(false)
         return app
