@@ -14,11 +14,9 @@ export class Sample extends BaseController {
     @httpGet("/")
     private async index(@request() req: express.Request, @response() res: express.Response): Promise<string> {
         res.setHeader("Content-Type", "text/html")
-        throw new Error("something errorrrrr")
-        // this.logger.log(dayjs().format("YYYY-MM-DD hh:mm:ss"));
-        // return await this.render(res, "index.swig.html", {
-        //     value: dayjs().format("YYYY-MM-DD h:m:s"),
-        // });
+        return await this.render(res, "index.html.twig", {
+            value: dayjs().format("YYYY-MM-DD hh:mm:ss"),
+        })
     }
 
     @httpGet("/s2")
@@ -28,8 +26,9 @@ export class Sample extends BaseController {
         // return
         res.setHeader("Content-Type", "text/html")
         console.log(req.params)
-        res.send("ok")
+        // res.send("ok")
         this.logger.error(dayjs().format("YYYY-MM-DD hh:mm:ss"))
+        throw new Error("something errorrrrr")
         // res.render('index.swig', )
     }
 

@@ -12,6 +12,6 @@ export class NotFoundController extends BaseController {
 
     @httpGet("/")
     private async index(@request() req: Request, @response() res: Response): Promise<string> {
-        return await this.render(res, "404.swig.html")
+        return await this.render(res, "404.html.twig")
     }
 }

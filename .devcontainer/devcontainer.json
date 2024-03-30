@@ -16,10 +16,10 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "antfu.browse-lite",
                 "mhutchie.git-graph",
                 "biomejs.biome",
-                "EditorConfig.EditorConfig"
+                "EditorConfig.EditorConfig",
+                "mblode.twig-language-2"
             ],
             "settings": {}
         }

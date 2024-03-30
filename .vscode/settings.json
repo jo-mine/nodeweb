@@ -1,7 +1,6 @@
 {
     "explorer.compactFolders": false,
     "git.autofetch": true,
-    "eslint.format.enable": true,
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
@@ -11,5 +10,17 @@
     },
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
-    }
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "biome_lsp.trace.server": "messages",
+    "[twig]": {
+        "editor.defaultFormatter": "mblode.twig-language-2"
+    },
+    "twig-language-2.indentStyle": "space",
+    "twig-language-2.tabSize": 4
 }

@@ -6,7 +6,7 @@ import { join } from "node:path"
 import * as bodyParser from "body-parser"
 import { Container } from "inversify"
 import { InversifyExpressServer } from "inversify-express-utils"
-import { renderFile, setDefaults } from "swig"
+import { cache, renderFile } from "twig"
 import "./controllers"
 import errorHandler from "./libs/middleware/errorHandler"
 import { bindService } from "./services"
@@ -21,11 +21,11 @@ new InversifyExpressServer(container)
             }),
         )
         app.use(bodyParser.json())
-        app.engine("html", renderFile)
-        app.set("view engine", "html")
+        app.engine("twig", renderFile)
+        app.set("view engine", "twig")
         app.set("views", join(__dirname, "views"))
         app.set("view cache", false)
-        setDefaults({ cache: false })
+        cache(false)
         return app
     })
     .setErrorConfig((app) => {
