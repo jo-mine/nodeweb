@@ -1,6 +1,10 @@
 <html>
     <head>
-        <script type="text/javascript">console.log('loaded')</script>
+        {% set assets = container.get("Assets") %}
+        {% for jsPath in assets.getJsPaths() %}
+            <script type="module" src="{{ jsPath }}"></script>
+        {% endfor %}
+
         {% block head %}{% endblock %}
     </head>
     <body>

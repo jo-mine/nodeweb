@@ -3,7 +3,7 @@ import { container } from "../../server"
 import { Logger } from "../service/Logger"
 
 const errorHandler: ErrorRequestHandler = (err: Error | null, req, res, next) => {
-    const logger = container.get<Logger>(Logger.symbol)
+    const logger = container.get<Logger>(Logger.id)
     if (err !== null) {
         logger.error(err.stack ?? err.message)
     }

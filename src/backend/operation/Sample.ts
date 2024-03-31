@@ -7,14 +7,14 @@ import { controller, httpDelete, httpGet, httpPost, request, requestParam, respo
 
 @controller("/operation/sample")
 export class Sample extends BaseController {
-    constructor(@inject(Logger.symbol) private readonly logger: Logger) {
+    constructor(@inject(Logger.id) private readonly logger: Logger) {
         super()
     }
 
-    @httpGet("/")
+    @httpGet("/index")
     private async index(@request() req: express.Request, @response() res: express.Response): Promise<string> {
         res.setHeader("Content-Type", "text/html")
-        return await this.renderLocal(req, res, "index.html.twig", {
+        return await this.renderAction(req, res, {
             value: dayjs().format("YYYY-MM-DD hh:mm:ss"),
         })
     }

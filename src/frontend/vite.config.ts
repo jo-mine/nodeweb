@@ -1,6 +1,6 @@
 import vue from "@vitejs/plugin-vue"
-import { defineConfig, splitVendorChunkPlugin } from "vite"
 import { glob } from "glob"
+import { defineConfig, splitVendorChunkPlugin } from "vite"
 
 const getInput = async (): Promise<Record<string, string>> => {
     const paths = await glob("assets/ts/**/*.ts", { ignore: ["**/*.d.ts", "assets/ts/libs/*"] })
@@ -20,6 +20,14 @@ const getInput = async (): Promise<Record<string, string>> => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    server: {
+        proxy: {
+            "/assets/js": {
+                target: "http://localhost:5173",
+                rewrite: (path) => path.replace("/js/", "/ts/").replace(".js", ".ts"),
+            },
+        },
+    },
     build: {
         manifest: true,
         outDir: "../../dist/frontend/",
@@ -31,6 +39,11 @@ export default defineConfig({
                 assetFileNames: "assets/css/[name][extname]",
                 chunkFileNames: "assets/js/chunk/[name]-[hash].js",
             },
+        },
+    },
+    resolve: {
+        alias: {
+            vue: "vue/dist/vue.esm-bundler.js",
         },
     },
     plugins: [vue(), splitVendorChunkPlugin()],

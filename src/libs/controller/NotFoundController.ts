@@ -6,7 +6,7 @@ import { BaseController } from "./BaseController"
 
 @controller("*")
 export class NotFoundController extends BaseController {
-    constructor(@inject(Logger.symbol) private readonly logger: Logger) {
+    constructor(@inject(Logger.id) private readonly logger: Logger) {
         super()
     }
 

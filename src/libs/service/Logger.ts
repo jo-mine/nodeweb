@@ -8,7 +8,7 @@ type LogFile = "log.log" | "error.log"
 
 @injectable()
 export class Logger {
-    public static readonly symbol = Symbol.for("Logger")
+    public static readonly id = "Logger"
     public log(content: number | string): void {
         const _content = typeof content === "number" ? content.toString() : content
         this.write("log.log", _content)
