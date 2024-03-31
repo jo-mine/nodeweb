@@ -1,4 +1,5 @@
-import { createApp, defineComponent, onMounted } from "vue"
+import { defineComponent, onMounted } from "vue"
+import { createApp } from "../../libs/BaseVue"
 
 createApp(
     defineComponent({

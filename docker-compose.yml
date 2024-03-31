@@ -8,11 +8,22 @@ services:
     volumes:
       - ./:/app
     ports:
-      # production
-      - 8080:80
       # develop
       - 8081:81
     command: "run dev"
+  nodewebprd:
+    build:
+      context: ./docker/nodeweb
+      dockerfile: ./Dockerfile
+    image: nodewebimage
+    container_name: nodewebprdcontainer
+    volumes:
+      - ./:/app
+    ports:
+      # production
+      - 8080:80
+    entrypoint: /bin/bash
+    command: /app/run.sh
   vite:
     build:
       context: ./docker/vite

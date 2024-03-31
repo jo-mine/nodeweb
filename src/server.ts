@@ -32,7 +32,7 @@ new InversifyExpressServer(container)
         cache(isProduction)
 
         // 仮実装。フロントエンドのjs配置考える
-        app.use("/resources", expressstatic(join(__dirname, isProduction ? "frontend/assets" : "frontend/src")))
+        app.use("/resources", expressstatic(join(__dirname, "frontend/assets")))
         return app
     })
     .setErrorConfig((app) => {
