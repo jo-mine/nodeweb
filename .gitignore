@@ -71,3 +71,4 @@ typings/
 
 # 追加
 dist
+docker/mariadb/data

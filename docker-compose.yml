@@ -11,6 +11,8 @@ services:
       # develop
       - 8081:81
     command: "run dev"
+    networks:
+      - nodewebnetwork
   nodewebprd:
     build:
       context: ./docker/nodeweb
@@ -24,6 +26,8 @@ services:
       - 8080:80
     entrypoint: /bin/bash
     command: /app/run.sh
+    networks:
+      - nodewebnetwork
   vite:
     build:
       context: ./docker/vite
@@ -35,3 +39,20 @@ services:
     ports:
       - 5173:5173
     command: "run dev"
+  mariadb:
+    build:
+      context: ./docker/mariadb
+      dockerfile: ./Dockerfile
+    image: mariadbimage
+    container_name: mariadbcontainer
+    volumes:
+      - ./docker/mariadb/data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: ""
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
+    networks:
+      - nodewebnetwork
+networks:
+  nodewebnetwork:
