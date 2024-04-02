@@ -1,0 +1,14 @@
+{
+    "production": {
+        "host": "mariadb",
+        "user": "root",
+        "password": "",
+        "database": "nodedb"
+    },
+    "develop": {
+        "host": "mariadb",
+        "user": "root",
+        "password": "",
+        "database": "nodedb"
+    }
+}
