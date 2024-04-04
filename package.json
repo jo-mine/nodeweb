@@ -21,6 +21,7 @@
         "inversify": "^6.0.2",
         "inversify-express-utils": "^6.4.6",
         "mysql": "^2.18.1",
+        "mysql2": "^3.9.3",
         "reflect-metadata": "^0.2.1",
         "tsc-alias": "^1.8.8",
         "tsx": "^4.7.0",
@@ -30,6 +31,7 @@
         "@biomejs/biome": "1.6.3",
         "@types/express": "^4.17.21",
         "@types/mysql": "^2.15.26",
+        "@types/node": "^20.12.3",
         "@types/twig": "^1.12.16",
         "typescript": "^5.4.3"
     }

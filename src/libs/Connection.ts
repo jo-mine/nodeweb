@@ -1,15 +1,13 @@
-import { databaseConfig } from "@/configs/database"
 import { injectable } from "inversify"
-import * as mysql from "mysql"
-
+import * as mysql from "mysql2"
 type SqlParams = Record<string, string | number | (string | number)[]>
 
 // @injectable()
 export class Connection {
     protected connection: mysql.Connection
 
-    constructor() {
-        this.connection = mysql.createConnection(databaseConfig)
+    constructor(config: mysql.ConnectionOptions) {
+        this.connection = mysql.createConnection(config)
     }
 
     protected connect(): Promise<void> {
@@ -36,14 +34,14 @@ export class Connection {
         })
     }
 
-    async select<T>(sql: string, params: SqlParams = {}): Promise<T> {
+    async select<T extends unknown[]>(sql: string, params: SqlParams = {}): Promise<T> {
         await this.connect()
-        const result = await this.query<T>(sql, params)
+        const result = await this.query(sql, params)
         await this.end()
-        return result
+        return result as T
     }
 
-    protected query<T>(sql: string, params: SqlParams): Promise<T> {
+    protected query(sql: string, params: SqlParams): Promise<mysql.QueryResult> {
         const queryOptions: mysql.QueryOptions = this.replacePlaceholders(sql, params)
         // 要検討
         queryOptions.timeout = undefined
@@ -101,5 +99,41 @@ export class Connection {
             sql,
             values,
         }
+    }
+
+    beginTransaction(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this.connection.beginTransaction((error) => {
+                if (error) {
+                    reject(error)
+                    return
+                }
+                resolve()
+            })
+        })
+    }
+
+    commit(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this.connection.commit((error) => {
+                if (error) {
+                    reject(error)
+                    return
+                }
+                resolve()
+            })
+        })
+    }
+
+    rollback(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this.connection.rollback((error) => {
+                if (error) {
+                    reject(error)
+                    return
+                }
+                resolve()
+            })
+        })
     }
 }

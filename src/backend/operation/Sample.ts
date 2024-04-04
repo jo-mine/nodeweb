@@ -4,6 +4,7 @@ import dayjs from "dayjs"
 import type * as express from "express"
 import { inject } from "inversify"
 import { controller, httpDelete, httpGet, httpPost, request, requestParam, response } from "inversify-express-utils"
+import { getEngines } from "./Dal"
 
 @controller("/operation/sample")
 export class Sample extends BaseController {
@@ -14,8 +15,11 @@ export class Sample extends BaseController {
     @httpGet("/index")
     private async index(@request() req: express.Request, @response() res: express.Response): Promise<string> {
         res.setHeader("Content-Type", "text/html")
+        const engineList = await getEngines()
+        console.log(engineList)
         return await this.renderAction(req, res, {
             value: dayjs().format("YYYY-MM-DD hh:mm:ss"),
+            engineList: engineList,
         })
     }
 

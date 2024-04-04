@@ -1,6 +1,9 @@
 <html>
     <head>
         {% set assets = container.get("Assets") %}
+        {% for cssPath in assets.getCssPaths() %}
+            <link rel="stylesheet" type="text/css" href="{{ cssPath }}">
+        {% endfor %}
         {% for jsPath in assets.getJsPaths() %}
             <script type="module" src="{{ jsPath }}"></script>
         {% endfor %}
@@ -8,8 +11,7 @@
         {% block head %}{% endblock %}
     </head>
     <body>
-        <div id="app">
-            {% block body %}{% endblock %}
-        </div>
-    </body>
-</html>
+        <div id="app"> {% block body %}{% endblock %}
+            </div>
+        </body>
+    </html>
