@@ -1,31 +1,16 @@
 services:
-  nodeweb:
+  bun:
     build:
-      context: ./docker/nodeweb
+      context: ./docker/bun
       dockerfile: ./Dockerfile
-    image: nodewebimage
-    container_name: nodewebcontainer
+    image: bunimage
+    container_name: buncontainer
     volumes:
       - ./:/app
     ports:
       # develop
       - 8081:81
     command: "run dev"
-    networks:
-      - nodewebnetwork
-  nodewebprd:
-    build:
-      context: ./docker/nodeweb
-      dockerfile: ./Dockerfile
-    image: nodewebimage
-    container_name: nodewebprdcontainer
-    volumes:
-      - ./:/app
-    ports:
-      # production
-      - 8080:80
-    entrypoint: /bin/bash
-    command: /app/run.sh
     networks:
       - nodewebnetwork
   vite:
