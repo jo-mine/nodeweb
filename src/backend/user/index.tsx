@@ -20,14 +20,9 @@ const index = ({ text, engineList }: { text: string; engineList: unknown[] }) =>
         </head>
         <body>
             <div id="app" v-cloak>
-                <card>
-                    <template>
-                        <h1>Hello World</h1>
-                        <div>{text}</div>
-                        <div>[[text]]</div>
-                    </template>
-                </card>
-                <calendar></calendar>
+                <h1>Hello World</h1>
+                <div>{text}</div>
+                <div>[[text]]</div>
             </div>
         </body>
     </html>

@@ -6,5 +6,6 @@ declare module "bun" {
         DB_USER: string
         DB_PASSWORD: string
         DB_DATABASE: string
+        LOG_FOLDER_PATH: string
     }
 }

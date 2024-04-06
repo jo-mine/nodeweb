@@ -1,10 +1,8 @@
-import { Elysia } from "elysia"
-import { user } from "./backend/user"
-import { logger } from "./libs/Logger"
-import { UnAuthorized } from "./libs/error/UnAuthorized"
+import Elysia from "elysia"
+import { UnAuthorized } from "../error/UnAuthorized"
+import { logger } from "../Logger"
 
-console.log(process.env)
-const app = new Elysia()
+export const ErrorHandler = new Elysia()
     .error({
         UnAuthorized,
     })
@@ -31,10 +29,3 @@ const app = new Elysia()
                 return new Response(code, { status: 500, statusText: code })
         }
     })
-    .use(user)
-    .get("/unauthorize", () => {
-        throw new UnAuthorized()
-    })
-    .listen(process.env.PORT)
-
-console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`)
