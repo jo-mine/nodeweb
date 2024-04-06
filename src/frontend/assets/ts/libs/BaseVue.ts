@@ -1,10 +1,8 @@
 import { type App, type CreateAppFunction, createApp as baseCreateApp } from "vue"
-import PrimeVue from "primevue/config"
-import DataTable from "primevue/datatable"
-import Column from "primevue/column"
+import { configurePrimeVue } from "./PrimeVue"
 
 export const createApp: CreateAppFunction<Element> = (component): App => {
-    const app = baseCreateApp(component).use(PrimeVue).component("DataTable", DataTable).component("Column", Column)
+    const app = baseCreateApp(component)
     app.config.compilerOptions.delimiters = ["[[", "]]"]
-    return app
+    return configurePrimeVue(app)
 }

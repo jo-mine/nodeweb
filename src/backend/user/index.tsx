@@ -19,10 +19,15 @@ const index = ({ text, engineList }: { text: string; engineList: unknown[] }) =>
             <link rel="stylesheet" type="text/css" href={getAssetsPath("css/index.css")} />
         </head>
         <body>
-            <div id="app">
-                <h1>Hello World</h1>
-                <div>{text}</div>
-                <div>[[text]]</div>
+            <div id="app" v-cloak>
+                <card>
+                    <template>
+                        <h1>Hello World</h1>
+                        <div>{text}</div>
+                        <div>[[text]]</div>
+                    </template>
+                </card>
+                <calendar></calendar>
             </div>
         </body>
     </html>

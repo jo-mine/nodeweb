@@ -1,5 +1,6 @@
 import vue from "@vitejs/plugin-vue"
 import { glob } from "glob"
+import path from "node:path"
 import { defineConfig, splitVendorChunkPlugin } from "vite"
 
 const getInput = async (): Promise<Record<string, string>> => {
@@ -25,6 +26,7 @@ const getInput = async (): Promise<Record<string, string>> => {
     console.log("===== build mapping =====")
     console.log(inputHash)
     console.log("===== build mapping end =====")
+    console.log(path.resolve(__dirname, "./assets"))
     return inputHash
 }
 
@@ -58,6 +60,7 @@ export default defineConfig({
     resolve: {
         alias: {
             vue: "vue/dist/vue.esm-bundler.js",
+            "@": path.resolve(__dirname, "./assets"),
         },
     },
     plugins: [vue(), splitVendorChunkPlugin()],

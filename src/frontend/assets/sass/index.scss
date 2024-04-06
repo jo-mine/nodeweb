@@ -2,11 +2,17 @@
 @import 'primeflex/themes/primeone-light.scss' layer(primevue);
 @import 'primeicons/primeicons.css';
 
-html, body {
+$gutter: 1rem; //for primeflex grid system
+@import './sakai-vue-master/layout/layout.scss' layer(primevue);
+
+html, body, #app {
     width: 100%;
     height: 100%;
     overflow: auto;
 }
 body {
     margin: 0;
+}
+[v-cloak] {
+    visibility: hidden;
 }
