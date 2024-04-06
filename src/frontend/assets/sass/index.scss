@@ -1,0 +1,12 @@
+@import 'primeflex/primeflex.scss';
+@import 'primeflex/themes/primeone-light.scss' layer(primevue);
+@import 'primeicons/primeicons.css';
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+body {
+    margin: 0;
+}
