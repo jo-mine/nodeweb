@@ -22,7 +22,9 @@
                 "EditorConfig.EditorConfig",
                 "mblode.twig-language-2",
                 "Vue.volar",
-                "Postman.postman-for-vscode"
+                "Postman.postman-for-vscode",
+                "cweijan.vscode-database-client2",
+                "eamodio.gitlens"
             ],
             "settings": {}
         }
