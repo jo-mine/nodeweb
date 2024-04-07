@@ -1,37 +1,12 @@
 import { Elysia } from "elysia"
-import { user } from "./backend/user"
-import { logger } from "./libs/Logger"
+import { admin_user } from "./backend/admin/user"
 import { UnAuthorized } from "./libs/error/UnAuthorized"
+import { ErrorHandler } from "./libs/handler/ErrorHandler"
 
 console.log(process.env)
 const app = new Elysia()
-    .error({
-        UnAuthorized,
-    })
-    .onError(({ code, error, set }) => {
-        logger.error(`${code}: ${error.message}`)
-        logger.error(error.stack)
-        switch (code) {
-            case "NOT_FOUND":
-                return new Response(code, { status: 404, statusText: code })
-            case "VALIDATION":
-                return new Response(code, { status: 400, statusText: code })
-            case "INVALID_COOKIE_SIGNATURE":
-                return new Response(code, { status: 400, statusText: code })
-            case "INTERNAL_SERVER_ERROR":
-                return new Response(code, { status: 500, statusText: code })
-            case "PARSE":
-                return new Response(code, { status: 500, statusText: code })
-            case "UNKNOWN":
-                return new Response(code, { status: 500, statusText: code })
-            case "UnAuthorized":
-                set.redirect = "/user"
-                break
-            default:
-                return new Response(code, { status: 500, statusText: code })
-        }
-    })
-    .use(user)
+    .use(ErrorHandler)
+    .use(admin_user)
     .get("/unauthorize", () => {
         throw new UnAuthorized()
     })

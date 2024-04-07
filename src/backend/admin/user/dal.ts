@@ -1,5 +1,5 @@
-import { databaseConfig } from "../../configs/database"
-import { Connection } from "../../libs/Connection"
+import { databaseConfig } from "../../../configs/database"
+import { Connection } from "../../../libs/Connection"
 
 export const dal = {
     async selectEngineList() {
