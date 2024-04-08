@@ -1,5 +1,5 @@
 import { html } from "@elysiajs/html"
-import Elysia from "elysia"
+import Elysia, { t } from "elysia"
 import { getAssetsPath } from "../../../configs/path"
 import { dal } from "./dal"
 
@@ -7,9 +7,21 @@ export const admin_user = new Elysia()
     .use(html())
     .decorate({ dal })
     .group("/admin", (app) => {
-        return app.get("/user", async ({ dal }) => {
-            return index({ text: "hogehoge", engineList: await dal.selectEngineList() })
-        })
+        return app
+            .get("/user", async ({ dal }) => {
+                return index({ text: "hogehoge", engineList: await dal.selectEngineList() })
+            })
+            .post(
+                "/user",
+                async ({ body, dal }) => {
+                    // await dal.
+                },
+                {
+                    body: t.Object({
+                        user_name: t.String(),
+                    }),
+                },
+            )
     })
 
 const index = ({ text, engineList }: { text: string; engineList: unknown[] }) => (

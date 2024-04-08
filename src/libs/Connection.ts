@@ -39,6 +39,15 @@ export class Connection {
         return result as T
     }
 
+    async insert<const T extends string[] = string[]>(tableName: string, insertColumns: T, insertData: Record<T[number], string | number>): Promise<void> {
+        await this.connect()
+        const sql = `
+            insert into ${tableName} (${insertColumns.join(",")}) values (${insertColumns.map((column) => `:${column}`).join(" , ")})
+        `
+        await this.query(sql, insertData)
+        await this.end()
+    }
+
     protected query(sql: string, params: SqlParams): Promise<mysql.QueryResult> {
         const queryOptions: mysql.QueryOptions = this.replacePlaceholders(sql, params)
         // 要検討
